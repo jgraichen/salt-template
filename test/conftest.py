@@ -56,21 +56,37 @@ def utils(opts):
     return salt.loader.utils(opts)
 
 
-@pytest.fixture()
+@pytest.fixture
 def mods(request, opts, utils):
     # Assign pillar data for current test
     o = copy.deepcopy(opts)
     o["pillar"] = _load_pillar(request.node)
     return salt.loader.minion_mods(o, utils=utils)
 
-@pytest.fixture()
-def render(request, mods):
+
+@pytest.fixture
+def renderers(opts, mods):
+    return salt.loader.render(opts, mods)
+
+
+@pytest.fixture
+def render(request, renderers):
     name = request.node.module.__name__[5:]
+
     def fn(**context):
+        kwargs = {}
         if context:
-            return mods['slsutil.renderer'](f'salt://_templates/{name}', context=context)
-        else:
-            return mods['slsutil.renderer'](f'salt://_templates/{name}')
+            kwargs["context"] = context
+
+        return salt.template.compile_template(
+            template=os.path.join(ROOT, "_templates", name),
+            renderers=renderers,
+            default="jinja|yaml",
+            blacklist=None,
+            whitelist=None,
+            **kwargs,
+        )
+
     return fn
 
 
