@@ -16,7 +16,8 @@ def run():
 
         /etc/sysctl.conf:
             file.managed:
-                - source: salt://_templates/sysctl
+                - template: py
+                - source: salt://_templates/sysctl.py
                 - context:
                     source:
                         - pillar_a

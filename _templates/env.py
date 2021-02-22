@@ -18,7 +18,8 @@ def run():
 
         /etc/default/env:
             file.managed:
-                - source: salt://_templates/env
+                - template: py
+                - source: salt://_templates/env.py
                 - context:
                     source:
                         - pillar_a

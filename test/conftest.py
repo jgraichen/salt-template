@@ -79,7 +79,7 @@ def render(request, renderers):
             kwargs["context"] = context
 
         return salt.template.compile_template(
-            template=os.path.join(ROOT, "_templates", name),
+            template=os.path.join(ROOT, f"_templates/{name}.py"),
             renderers=renderers,
             default="jinja|yaml",
             blacklist=None,

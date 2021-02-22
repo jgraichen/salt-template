@@ -30,7 +30,8 @@ def run():
 
         /etc/app/config.yaml:
           file.managed:
-            - source: salt://_templates/yaml2
+            - template: py
+            - source: salt://_templates/yaml2.py
             - context:
                 source: app:config
                 root: app:production

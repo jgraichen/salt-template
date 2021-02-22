@@ -7,7 +7,8 @@ This repository provides salt template files and module functions to serialize d
 ```yaml
 /etc/default/application:
   file.managed:
-    - source: salt://_templates/env
+    - template: py
+    - source: salt://_templates/env.py
     - context:
         # Default config data to merge with pillar data
         default:
@@ -22,7 +23,8 @@ This repository provides salt template files and module functions to serialize d
 ```yaml
 /etc/systemd/system/application.service:
   file.managed:
-    - source: salt://_templates/systemd
+    - template: py
+    - source: salt://_templates/systemd.py
     - context:
         default:
           Unit:
@@ -35,7 +37,8 @@ This repository provides salt template files and module functions to serialize d
 ```yaml
 /rails/config/database.yaml:
   file.managed:
-    - source: salt://_templates/yaml2
+    - template: py
+    - source: salt://_templates/yaml2.py
     - context:
         source: myapp:rails:database
         root: production
@@ -72,7 +75,8 @@ A comma-separated string or a list of pillar keys to load data from. The pillar 
 ```yaml
 /etc/salt/minion.d/minion.conf:
   file.managed:
-    - source: salt://_templates/yaml2
+    - template: py
+    - source: salt://_templates/yaml2.py
     - context:
         source:
           - salt:common
@@ -90,7 +94,8 @@ Some default data to use with the template. If an additional `source` is specifi
 ```yaml
 /etc/salt/minion.d/minion.conf:
   file.managed:
-    - source: salt://_templates/yaml2
+    - template: py
+    - source: salt://_templates/yaml2.py
     - context:
         default:
           log_level: INFO
@@ -109,7 +114,8 @@ Renders a single-level dictionary into an environment file.
 ```yaml
 /etc/default/application:
   file.managed:
-    - source: salt://_templates/env
+    - template: py
+    - source: salt://_templates/env.py
     - context:
         default:
           KEY: 1
@@ -134,7 +140,8 @@ Renders a sysctl-like configuration with additional list suppport.
 ```yaml
 /etc/rabbitmq/rabbitmq.conf:
   file.managed:
-    - source: salt://_templates/sysctl
+    - template: py
+    - source: salt://_templates/sysctl.py
     - context:
         default:
             cluster_formation.peer_discovery_backend: classic_config
@@ -161,7 +168,8 @@ Renders a file using an [`systemd.syntax`](https://www.freedesktop.org/software/
 ```yaml
 /etc/systemd/system/application.service.d/override.conf:
   file.managed:
-    - source: salt://_templates/systemd
+    - template: py
+    - source: salt://_templates/systemd.py
     - context:
         default:
           Unit:
@@ -197,7 +205,8 @@ Render the given data as a flat dictionary into the given section.
 ```yaml
 /etc/systemd/resolved.conf.d/override.conf:
   file.managed:
-    - source: salt://_templates/systemd
+    - template: py
+    - source: salt://_templates/systemd.py
     - context:
         default:
           DNS: 127.0.0.1
@@ -223,7 +232,8 @@ Renders a list of text blobs into a combined file.
 ```yaml
 /etc/application/config:
   file.managed:
-    - source: salt://_templates/text
+    - template: py
+    - source: salt://_templates/text.py
     - context:
         default: |
           First blob.
@@ -258,7 +268,8 @@ Renders into a YAML document.
 ```yaml
 /etc/application/config.yaml:
   file.managed:
-    - source: salt://_templates/yaml2
+    - template: py
+    - source: salt://_templates/yaml2.py
     - context:
         default:
           database:
@@ -290,7 +301,8 @@ A colon-separated string to recursively nest the data into the given path. Usefu
 ```yaml
 /rails/config/database.yaml:
   file.managed:
-    - source: salt://_templates/yaml2
+    - template: py
+    - source: salt://_templates/yaml2.py
     - context:
         source: myapp:rails:database
         root: production
