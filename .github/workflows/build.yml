@@ -20,7 +20,7 @@ jobs:
           - python: 3.7
             env: py37-salt2018
           - python: 3.6
-            env: py37-salt2017
+            env: py36-salt2017
 
     steps:
       - uses: actions/checkout@v1
