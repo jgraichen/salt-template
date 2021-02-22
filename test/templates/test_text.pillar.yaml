@@ -1,0 +1,8 @@
+# vim: ft=yaml
+
+test:
+  key: |
+    Some text.
+
+  blob1: blob1
+  blob2: blob2

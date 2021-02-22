@@ -1,0 +1,10 @@
+# vim: ft=yaml
+
+test:
+  key:
+    KEY: 1
+    STR: string with space
+    ML: |-
+      Multi
+      line
+      string

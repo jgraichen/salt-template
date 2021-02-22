@@ -1,0 +1,7 @@
+# vim: ft=yaml
+
+test:
+  key:
+    some.key: 1
+    some.other.key: 2
+    some.list: [a, b]

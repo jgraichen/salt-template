@@ -1,0 +1,39 @@
+name: build
+on: push
+
+jobs:
+  pytest:
+    name: ${{ matrix.name }}
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python: 3.9
+            name: Python 3.9 / Salt 3002
+            env: py39-salt3002
+          - python: 3.8
+            name: Python 3.8 / Salt 3001
+            env: py38-salt3001
+          - python: 3.7
+            name: Python 3.7 / Salt 3000
+            env: py37-salt3000
+          - python: 3.7
+            name: Python 3.7 / Salt 2019
+            env: py37-salt2019
+          - python: 3.7
+            name: Python 3.7 / Salt 2018
+            env: py37-salt2018
+          - python: 3.6
+            name: Python 3.7 / Salt 2017
+            env: py37-salt2017
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install --upgrade pip
+      - run: pip install wheel tox
+      - run: tox -e ${{ matrix.env }} -- -vv
+

@@ -1,0 +1,33 @@
+# vim: ft=yaml
+
+#
+test_prepare_source_pillar:
+  key:
+    some:
+      pillar: data
+
+#
+test_prepare_source_pillar_colon:
+  a: { a: 1 }
+  b: { b: 2 }
+
+#
+test_prepare_source_pillar_list:
+  a: { a: 1 }
+  b: { b: 2 }
+
+#
+test_prepare_source_merge:
+  a:
+    a: 1
+    key: {name: a}
+    value: 1
+  b:
+    b: 2
+    key: {name: b}
+    value: 2
+
+#
+test_prepare_source_merge_default:
+  key:
+    v: {i: 2}

@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.cache/
+.pytest_cache/
+.eggs/
+.vscode/.ropeproject
+/*.lock
+/*.egg-info
+/.env
+/.tox
+/build
+/dist
+/tmp

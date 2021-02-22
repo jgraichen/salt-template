@@ -1,0 +1,6 @@
+# vim: ft=yaml
+
+test:
+  key:
+    some:
+      data: 1

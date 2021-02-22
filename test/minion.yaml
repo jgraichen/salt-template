@@ -1,0 +1,7 @@
+id: minion_test
+master: 127.0.0.1
+master_type: disable
+
+file_client: local
+use_master_when_local: False
+grains: {}

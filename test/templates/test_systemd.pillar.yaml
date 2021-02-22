@@ -1,0 +1,16 @@
+# vim: ft=yaml
+
+test:
+  config:
+    DNS: 127.0.0.1
+    Domains: ~consul
+
+  service:
+    Unit:
+      Description: A common service unit file
+      After:
+        - consul.service
+        - nomad.service
+    Service:
+      Type: simple
+      ExecStart: [Null, /usr/bin/env]
