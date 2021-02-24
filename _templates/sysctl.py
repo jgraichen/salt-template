@@ -38,7 +38,9 @@ def run():
 
     lines = []
     for key, value in data.items():
-        if isinstance(value, list):
+        if isinstance(value, bool):
+            lines.append(f"{key} = {str(value).lower()}")
+        elif isinstance(value, list):
             for index, part in enumerate(value):
                 lines.append(f"{key}.{index + 1} = {part}")
         else:

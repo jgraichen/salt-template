@@ -32,5 +32,6 @@ def test_render_source(render):
         some.other.key = 2
         some.list.1 = a
         some.list.2 = b
+        boolean = false
         """
     )
