@@ -1,5 +1,10 @@
+# vim: ft=yaml:sw=2
+
 name: build
-on: push
+
+on:
+  - push
+  - pull_request
 
 jobs:
   pytest:
@@ -30,4 +35,3 @@ jobs:
       - run: python -m pip install --upgrade pip
       - run: pip install wheel tox
       - run: tox -e ${{ matrix.env }} -- -vv
-
