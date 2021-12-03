@@ -4,8 +4,6 @@
 
 import textwrap
 
-import pytest
-
 
 def _text(text: str):
     return textwrap.dedent(text).lstrip()
