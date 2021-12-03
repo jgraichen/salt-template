@@ -4,6 +4,11 @@
 Python template to serialize a sysctl-like configuration
 """
 
+from typing import TYPE_CHECKING, Callable, Dict
+
+if TYPE_CHECKING:
+    __salt__: Dict[str, Callable]
+
 
 def run():
     """
@@ -33,7 +38,7 @@ def run():
         key.one = 1
         key.two = 2
     """
-    args = globals().get('context', {})
+    args = globals().get("context", {})
     data = __salt__["template.prepare"](**args)
 
     lines = []

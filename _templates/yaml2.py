@@ -4,6 +4,12 @@
 Python template for YAML serialization
 """
 
+from typing import TYPE_CHECKING, Callable, Dict
+
+if TYPE_CHECKING:
+    __salt__: Dict[str, Callable]
+
+
 import yaml as _pyyaml
 
 from salt.serializers import yaml

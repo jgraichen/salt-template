@@ -4,6 +4,11 @@
 Python template to serialize a systemd.syntax file
 """
 
+from typing import TYPE_CHECKING, Callable, Dict
+
+if TYPE_CHECKING:
+    __salt__: Dict[str, Callable]
+
 
 def _escape(string: str):
     return "\\\n    ".join(string.splitlines())

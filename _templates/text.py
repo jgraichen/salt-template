@@ -4,6 +4,11 @@
 Python template to serialize a text file
 """
 
+from typing import TYPE_CHECKING, Callable, Dict
+
+if TYPE_CHECKING:
+    __salt__: Dict[str, Callable]
+
 
 def run():
     """

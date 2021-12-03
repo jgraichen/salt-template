@@ -6,6 +6,11 @@ Python template to serialize an ENV file
 
 import shlex
 
+from typing import TYPE_CHECKING, Callable, Dict
+
+if TYPE_CHECKING:
+    __salt__: Dict[str, Callable]
+
 
 def run():
     """
@@ -37,7 +42,7 @@ def run():
         KEY_FROM_PILLAR='Multiline
         string'
     """
-    args = globals().get('context', {})
+    args = globals().get("context", {})
     data = __salt__["template.prepare"](**args)
 
     lines = []
