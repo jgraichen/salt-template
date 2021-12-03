@@ -51,3 +51,28 @@ def test_render_section(render):
         Domains=~consul
         """
     )
+
+
+def test_render_multiple_section(render):
+    out = render(source="network")
+
+    assert out == _text(
+        """
+        # This file is managed by salt. Changes will be overwritten.
+
+        [Match]
+        Name=lo
+
+        [Network]
+        Address=127.0.0.2/8
+        Address=127.0.0.3/8
+
+        [Route]
+        Destination=10.0.0.0/8
+        Type=unreachable
+
+        [Route]
+        Destination=192.168.0.0/16
+        Type=unreachable
+        """
+    )

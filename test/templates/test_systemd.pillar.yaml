@@ -14,3 +14,18 @@ test:
     Service:
       Type: simple
       ExecStart: [Null, /usr/bin/env]
+
+  network:
+    Match:
+      Name: lo
+
+    Network:
+      Address:
+        - 127.0.0.2/8
+        - 127.0.0.3/8
+
+    Route:
+      - Destination: 10.0.0.0/8
+        Type: unreachable
+      - Destination: 192.168.0.0/16
+        Type: unreachable

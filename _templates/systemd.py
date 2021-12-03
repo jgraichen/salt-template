@@ -21,6 +21,20 @@ def _value(value):
     raise ValueError(f"Unsupport value: {value!r}")
 
 
+def _render_section(name, values):
+    lines = [f"[{name}]"]
+
+    for key, value in values.items():
+        if isinstance(value, list):
+            for val in value:
+                lines.append(f"{key}={_value(val)}")
+        else:
+            lines.append(f"{key}={_value(value)}")
+
+    lines.append("")
+    return lines
+
+
 def run():
     """
     Renders data into a systemd syntax file.
@@ -66,16 +80,11 @@ def run():
         data = {args["section"]: data}
 
     lines = []
-    for name, items in data.items():
-        lines.append(f"[{name}]")
-
-        for key, value in items.items():
-            if isinstance(value, list):
-                for val in value:
-                    lines.append(f"{key}={_value(val)}")
-            else:
-                lines.append(f"{key}={_value(value)}")
-
-        lines.append("")
+    for name, values in data.items():
+        if isinstance(values, list):
+            for items in values:
+                lines.extend(_render_section(name, items))
+        else:
+            lines.extend(_render_section(name, values))
 
     return __salt__["template.managed"](lines, **args)
