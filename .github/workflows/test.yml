@@ -23,7 +23,7 @@ jobs:
           - python: 3.8
             env: py38-salt3001
           - python: 3.8
-            env: py36-salt3000
+            env: py38-salt3000
           - python: 3.6
             env: py36-salt2019
           - python: 3.6
