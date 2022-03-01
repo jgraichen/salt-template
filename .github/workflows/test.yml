@@ -15,6 +15,10 @@ jobs:
       matrix:
         include:
           - python: 3.9
+            env: py39-salt3004
+          - python: 3.9
+            env: py39-salt3003
+          - python: 3.9
             env: py39-salt3002
           - python: 3.8
             env: py38-salt3001
