@@ -51,7 +51,7 @@ The recommended installation uses salt `GitFS` to include this repository into y
 ```yaml
 gitfs_remotes:
   - https://github.com/jgraichen/salt-template.git:
-      - base: v1.0.0
+      - base: v1.2.0
 ```
 
 It is recommended to checkout a specific revision to avoid getting unexpected updates or changes.
