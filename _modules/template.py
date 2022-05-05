@@ -1,4 +1,4 @@
-# -*- mode: python -*-
+# vim: ft=python
 """
 Utility functions for working with templates and template-based file
 serialization.
@@ -7,10 +7,11 @@ serialization.
 
 def _fastmerge(a, b):
     """
-    Fast recusrive merge of dicts and list.
+    Fast recursive merge of dicts and list.
 
-    Fast merge avoids copying dicts and list but also avoids mutating objects.
-    It operates by rebuilding nested datasets from top to bottom if necessary.
+    Fast merge avoids copying dicts and list but also avoids mutating
+    objects. It operates by rebuilding nested datasets from top to
+    bottom if necessary.
     """
     if isinstance(a, dict) and isinstance(b, dict):
         if not b:  # If B is empty we can return A
@@ -43,17 +44,17 @@ def _render_commented(text, sign):
     return lines
 
 
-def managed(text, comment=None, comment_prefix="#", preamble=True, **kwargs):
+def managed(text, comment=None, comment_prefix="#", preamble=True, **_kwargs):
     """
-    Takes a string or list of lines and renders a final configuration file. It
-    will add a preamble aquired via `config.get("template_managed")`. The
-    default is the following text:
+    Takes a string or list of lines and renders a final configuration
+    file. It will add a preamble acquired via
+    `config.get("template_managed")`. The default is the following text:
 
         This file is managed by salt. Changes will be overwritten.
 
-    All lines in the preamble will be prefixed with the given sign (default `#`)
-    and prepended to the text. The preamble, the given text or lines, and a
-    final newline are joined together and returned.
+    All lines in the preamble will be prefixed with the given sign
+    (default `#`) and prepended to the text. The preamble, the given
+    text or lines, and a final newline are joined together and returned.
     """
 
     if isinstance(text, list):
@@ -83,10 +84,7 @@ def prepare(**kwargs):
     Used in serialize templates for getting the initial data.
     """
 
-    if "default" in kwargs:
-        data = kwargs["default"]
-    else:
-        data = {}
+    data = kwargs.get("default", {})
 
     if "source" in kwargs:
         sources = kwargs["source"]

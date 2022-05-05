@@ -12,6 +12,16 @@ test = ["pylint==2.13.8", "pytest==7.0.1"]
 [tool.pdm.dev-dependencies]
 dev = ["black==22.3.0", "pylint==2.13.8", "pytest==7.0.1", "tox==3.25.0"]
 
+[tool.pylint.basic]
+good-names = "a,b,fd,k,v"
+
+[tool.pylint.variables]
+additional-builtins = "__salt__,__opts__,__grains__,__pillar__"
+
+[tool.pylint.similarities]
+min-similarity-lines = 6
+ignore-imports = true
+
 [tool.pytest.ini_options]
 testpaths = ["test"]
 

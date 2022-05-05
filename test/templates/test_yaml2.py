@@ -9,7 +9,7 @@ def _text(text: str):
     return textwrap.dedent(text).lstrip()
 
 
-def test_render(mods, render):
+def test_render(render):
     out = render()
 
     assert out == _text(
@@ -21,7 +21,7 @@ def test_render(mods, render):
     )
 
 
-def test_render_source(mods, render):
+def test_render_source(render):
     out = render(source="key")
 
     assert out == _text(
@@ -34,7 +34,7 @@ def test_render_source(mods, render):
     )
 
 
-def test_render_root(mods, render):
+def test_render_root(render):
     out = render(source="key", root="app:config")
 
     assert out == _text(

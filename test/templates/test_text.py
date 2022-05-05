@@ -9,7 +9,7 @@ def _text(text: str):
     return textwrap.dedent(text).lstrip()
 
 
-def test_render(mods, render):
+def test_render(render):
     out = render()
 
     assert out == _text(
@@ -19,7 +19,7 @@ def test_render(mods, render):
     )
 
 
-def test_render_source(mods, render):
+def test_render_source(render):
     out = render(source="key")
 
     assert out == _text(
@@ -31,7 +31,7 @@ def test_render_source(mods, render):
     )
 
 
-def test_render_source_blank(mods, render):
+def test_render_source_blank(render):
     out = render(source="empty")
 
     assert out == _text(
@@ -41,7 +41,7 @@ def test_render_source_blank(mods, render):
     )
 
 
-def test_render_source_multiple(mods, render):
+def test_render_source_multiple(render):
     out = render(source="blob1,blob2", comment_prefix="//")
 
     assert out == _text(
@@ -58,7 +58,7 @@ def test_render_source_multiple(mods, render):
     )
 
 
-def test_render_source_comment(mods, render):
+def test_render_source_comment(render):
     out = render(source="key", comment="This is\na comment.")
 
     assert out == _text(
