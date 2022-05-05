@@ -1,6 +1,6 @@
 # vim: ft=yaml:sw=2
 
-name: build
+name: test
 
 on:
   - push
@@ -22,20 +22,19 @@ jobs:
             env: py39-salt3002
           - python: "3.8"
             env: py38-salt3001
-          - python: "3.6"
-            env: py36-salt3000
-          - python: "3.6"
-            env: py36-salt2019
-          - python: "3.6"
-            env: py36-salt2018
-          - python: "3.6"
-            env: py36-salt2017
+          - python: "3.7"
+            env: py37-salt3000
+          - python: "3.7"
+            env: py37-salt2019
+          - python: "3.7"
+            env: py37-salt2018
+          - python: "3.7"
+            env: py37-salt2017
 
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v3
+      - uses: pdm-project/setup-pdm@main
         with:
           python-version: ${{ matrix.python }}
-      - run: python -m pip install --upgrade pipenv wheel
-      - run: pipenv install --dev
-      - run: pipenv run tox -e ${{ matrix.env }} -- -vv
+      - run: pdm install --no-default --dev
+      - run: pdm run tox -e ${{ matrix.env }} -- -vv

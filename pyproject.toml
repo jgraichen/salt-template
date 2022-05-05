@@ -1,0 +1,25 @@
+[project]
+name = "salt-template"
+version = "1.2.0"
+authors = [{ name = "Jan Graichen", email = "jgraichen@altimos.de" }]
+license = { text = "MIT" }
+requires-python = ">= 3.6.2"
+dependencies = ["salt>=2017"]
+[project.optional-dependencies]
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "black==22.3.0",
+    "pylint==2.13.8",
+    "pytest==7.0.1",
+    "tox==3.25.0",
+    "tox-pdm>=0.3.1",
+]
+test = ["pytest==7.0.1"]
+
+[tool.pytest.ini_options]
+testpaths = ["test"]
+
+[build-system]
+requires = ["pdm-pep517"]
+build-backend = "pdm.pep517.api"
