@@ -1,0 +1,19 @@
+# vim: ft=yaml
+
+test:
+  key:
+    DEFAULT:
+      key: 1
+      multiline: |-
+        Multi
+        line
+        string
+
+    section:
+      decimal with space: 1.23
+      list:
+        - A
+        - B
+      dict:
+        a: 1
+        b: 2
