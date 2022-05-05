@@ -38,3 +38,13 @@ jobs:
           python-version: ${{ matrix.python }}
       - run: pdm install --dev --no-self --no-default
       - run: pdm run tox -e ${{ matrix.env }} -- -vv
+
+  black:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pdm-project/setup-pdm@main
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pdm install --dev --no-self --no-default
+      - run: pdm run black --check .
