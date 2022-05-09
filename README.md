@@ -319,6 +319,69 @@ production:
 </dl>
 
 
+### config (ini/properties)
+
+Renders into an ini/properties file using Pythons `configparser` module.
+
+```yaml
+/etc/application/config.ini:
+  file.managed:
+    - template: py
+    - source: salt://_templates/config.py
+    - context:
+        default:
+          DEFAULT:
+            enabled: 'yes'
+          DATABASE:
+            host: 127.0.0.1
+            port: 1234
+        source: pillar:key
+```
+
+```ini
+# This file is managed by salt. Changes will be overwritten.
+
+[DEFAULT]
+enabled = yes
+
+[DATABASE]
+host = 127.0.0.1
+port = 1234
+```
+
+#### Additional arguments
+
+<dl>
+<dt>
+
+`section` (str, optional)
+
+<dd>
+
+A section name to scope all data into. Useful when the target file only
+needs a single section.
+
+```yaml
+/etc/application/config.ini:
+  file.managed:
+    - template: py
+    - source: salt://_templates/config.py
+    - context:
+        source: app:config
+        section: [config]
+```
+
+```ini
+# This file is managed by salt. Changes will be overwritten.
+
+[config]
+database = postgresql
+hostname = 127.0.0.1
+```
+
+</dl>
+
+
 ## Execution modules
 
 ### `template.managed`
