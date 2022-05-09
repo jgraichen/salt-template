@@ -17,3 +17,7 @@ test:
       dict:
         a: 1
         b: 2
+
+  section:
+    key: 1
+    list: [a,b ]

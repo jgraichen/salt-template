@@ -47,6 +47,9 @@ def run():
     args = globals().get("context", {})
     data = __salt__["template.prepare"](**args)
 
+    if "section" in args:
+        data = {args["section"]: data}
+
     cfp = configparser.ConfigParser(interpolation=None)
     for section, items in sorted(data.items()):
         if not isinstance(items, dict):

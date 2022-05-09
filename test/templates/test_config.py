@@ -37,3 +37,17 @@ def test_render_source(render):
         list = A,B
         """
     )
+
+
+def test_render_section(render):
+    out = render(source="section", section="CONFIG")
+
+    assert out == _text(
+        """
+        # This file is managed by salt. Changes will be overwritten.
+
+        [CONFIG]
+        key = 1
+        list = a,b
+        """
+    )
