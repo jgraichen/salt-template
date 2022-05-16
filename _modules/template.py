@@ -35,6 +35,16 @@ def _fastmerge(a, b):
     return b
 
 
+def _filter(data, exclude=None):
+    if not exclude:
+        return data
+    if isinstance(data, dict):
+        return {k: _filter(v, exclude) for k, v in data.items() if k not in exclude}
+    if isinstance(data, list):
+        return [_filter(v) for v in data]
+    return data
+
+
 def _render_commented(text, sign):
     lines = [f"{sign} {line.rstrip()}" for line in text.strip().splitlines()]
 
@@ -85,6 +95,7 @@ def prepare(**kwargs):
     """
 
     data = kwargs.get("default", {})
+    exclude = kwargs.get("exclude", [])
 
     if "source" in kwargs:
         sources = kwargs["source"]
@@ -94,5 +105,12 @@ def prepare(**kwargs):
 
         for pillar in sources:
             data = _fastmerge(data, __salt__["pillar.get"](pillar, default={}))
+
+    if exclude:
+        if isinstance(exclude, str):
+            exclude = [exclude]
+        if not isinstance(exclude, list):
+            raise ValueError("exclude must be a list")
+        data = _filter(data, exclude)
 
     return data

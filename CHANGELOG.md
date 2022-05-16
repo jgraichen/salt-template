@@ -3,45 +3,37 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Changelog](http://keepachangelog.com/).
 
+## [Unreleased]
 
+### Added
 
-## Unreleased
----
+- Option to exclude specific keys when collecting the data sources
 
-### New
+## [1.3.0] - (2022-05-09)
 
-### Changes
+### Added
 
-### Fixes
+- New template: ini/properties files using pythons configparser module
 
-### Breaks
+## [1.2.0] - (2021-12-03)
 
+### Added
 
-## 1.3.0 - (2022-05-09)
----
+- Support for repeated sections
 
-### New
-* New template: ini/properties files using pythons configparser module
+## [1.1.0] - (2021-02-24)
 
+### Added
 
-## 1.2.0 - (2021-12-03)
----
-
-### New
-* Support for repeated sections
-
-
-## 1.1.0 - (2021-02-24)
----
-
-### New
-* sysctl: serialize boolean to lower-case
-
+- sysctl: serialize boolean to lower-case
 
 ## 1.0.0 - (2021-02-22)
----
 
-### New
-* Initial release
+### Added
 
+- Initial release
 
+[Unreleased]: https://github.com/jgraichen/salt-template/compare/v1.2.0...HEAD
+[1.3.0]: https://github.com/jgraichen/salt-template/compare/v1.2.0...v1.3.0
+[1.2.0]: https://github.com/jgraichen/salt-template/compare/v1.1.0...v1.2.0
+[1.1.0]: https://github.com/jgraichen/salt-template/compare/v1.0.0...v1.1.0

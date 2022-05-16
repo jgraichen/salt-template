@@ -2,7 +2,6 @@
 # pylint: disable=missing-docstring
 # pylint: disable=redefined-outer-name
 
-import contextlib
 import textwrap
 
 
@@ -29,6 +28,13 @@ def test_managed_comment_prefix(mods):
 
 def test_managed_comment_prefix_off(mods):
     out = mods["template.managed"](["TEXT"], comment_prefix=False)
+    assert out == "TEXT\n"
+
+
+def test_managed_comment_prefix_off_2(mods):
+    out = mods["template.managed"](
+        ["TEXT"], comment_prefix=False, comment="This is\na comment."
+    )
     assert out == "TEXT\n"
 
 
@@ -62,13 +68,6 @@ def test_managed_comment(mods):
         TEXT
         """
     )
-
-
-def test_managed_comment_prefix_off(mods):
-    out = mods["template.managed"](
-        ["TEXT"], comment_prefix=False, comment="This is\na comment."
-    )
-    assert out == "TEXT\n"
 
 
 def test_managed_lines_rstrip(mods):
@@ -111,3 +110,18 @@ def test_prepare_source_merge(mods):
 def test_prepare_source_merge_default(mods):
     out = mods["template.prepare"](source="key", default={"v": {"i": 1}})
     assert out == {"v": {"i": 2}}
+
+
+def test_prepare_exclude(mods):
+    out = mods["template.prepare"](default={"a": 1, "b": 2}, exclude=["b"])
+    assert out == {"a": 1}
+
+
+def test_prepare_exclude_deep(mods):
+    out = mods["template.prepare"](default={"data": {"a": 1, "b": 2}}, exclude=["b"])
+    assert out == {"data": {"a": 1}}
+
+
+def test_prepare_exclude_autolist(mods):
+    out = mods["template.prepare"](default={"data": {"b": 1, "bb": 2}}, exclude="b")
+    assert out == {"data": {"bb": 2}}
