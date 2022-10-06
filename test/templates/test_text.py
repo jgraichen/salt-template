@@ -71,3 +71,31 @@ def test_render_source_comment(render):
         Some text.
         """
     )
+
+
+def test_render_source_list(render):
+    out = render(source="list")
+
+    assert out == _text(
+        """
+        # This file is managed by salt. Changes will be overwritten.
+
+        Text 1
+        Text 2
+        Text 3
+        """
+    )
+
+
+def test_render_source_dict(render):
+    out = render(source="dict")
+
+    assert out == _text(
+        """
+        # This file is managed by salt. Changes will be overwritten.
+
+        Text A
+        Text B
+        Text C
+        """
+    )

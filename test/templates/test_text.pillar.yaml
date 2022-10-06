@@ -6,3 +6,16 @@ test:
 
   blob1: blob1
   blob2: blob2
+
+  list:
+    - Text 1
+    - ~
+    - Text 2
+    - ~
+    - Text 3
+
+  dict:
+    a: Text A
+    b: Text B
+    c: ~
+    d: Text C

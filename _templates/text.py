@@ -4,11 +4,13 @@
 Python template to serialize a text file
 """
 
+from types import NoneType
 from typing import TYPE_CHECKING, Callable, Dict
 
 if TYPE_CHECKING:
     __salt__: Dict[str, Callable]
 
+VALID_TYPES = (str, NoneType)
 
 def run():
     """
@@ -40,6 +42,14 @@ def run():
 
         if data is None:
             continue
+
+        if isinstance(data, list):
+            if all(isinstance(item, VALID_TYPES) for item in data):
+                data = "\n".join(filter(lambda value: isinstance(value, str), data))
+
+        if isinstance(data, dict):
+            if all(isinstance(value, VALID_TYPES) for value in data.values()):
+                data = "\n".join(filter(lambda value: isinstance(value, str), data.values()))
 
         if not isinstance(data, str):
             raise ValueError(

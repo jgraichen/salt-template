@@ -10,6 +10,9 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Added
 
 - Support for Salt 3005
+- Support concatenating lists and dicts in the text format template
+
+## [Unreleased]
 
 ## [1.4.0] - 2022-05-16
 
@@ -41,6 +44,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 
 - Initial release
 
+[unreleased]: https://github.com/jgraichen/salt-template/compare/v1.4.0...HEAD
 [unreleased]: https://github.com/jgraichen/salt-template/compare/v1.4.0...HEAD
 [1.4.0]: https://github.com/jgraichen/salt-template/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/jgraichen/salt-template/compare/v1.2.0...v1.3.0
