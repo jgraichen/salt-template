@@ -4,13 +4,12 @@
 Python template to serialize a text file
 """
 
-from types import NoneType
 from typing import TYPE_CHECKING, Callable, Dict
 
 if TYPE_CHECKING:
     __salt__: Dict[str, Callable]
 
-VALID_TYPES = (str, NoneType)
+VALID_TYPES = (str, type(None))
 
 def run():
     """
