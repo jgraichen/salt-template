@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 
 VALID_TYPES = (str, type(None))
 
+
 def run():
     """
     Serializes one or more text parts into a file.
@@ -48,7 +49,9 @@ def run():
 
         if isinstance(data, dict):
             if all(isinstance(value, VALID_TYPES) for value in data.values()):
-                data = "\n".join(filter(lambda value: isinstance(value, str), data.values()))
+                data = "\n".join(
+                    filter(lambda value: isinstance(value, str), data.values())
+                )
 
         if not isinstance(data, str):
             raise ValueError(
