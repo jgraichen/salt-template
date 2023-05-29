@@ -17,7 +17,7 @@ jobs:
           - python: "3.10"
             env: py310-salt3006
           - python: "3.9"
-            env: py310-salt3005
+            env: py39-salt3005
           - python: "3.9"
             env: py39-salt3004
           - python: "3.9"
