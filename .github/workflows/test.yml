@@ -9,7 +9,7 @@ on:
 jobs:
   pytest:
     name: ${{ matrix.env }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
@@ -36,11 +36,11 @@ jobs:
       - run: pdm run tox -e ${{ matrix.env }} -- -vv
 
   black:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - uses: pdm-project/setup-pdm@main
         with:
-          python-version: "3.10"
+          python-version: "3.11"
       - run: pdm install --dev --no-self --no-default
       - run: pdm run black --check .
