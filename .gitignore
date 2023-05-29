@@ -3,7 +3,7 @@ __pypackages__/
 .cache/
 .eggs/
 .mypy_cache/
-.pdm.toml
+.pdm-python
 .pytest_cache/
 .vscode/.ropeproject
 *.py[cod]
