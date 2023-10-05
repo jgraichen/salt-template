@@ -7,7 +7,7 @@ requires-python = ">= 3.8.2"
 dependencies = ["salt>=2017"]
 
 [project.optional-dependencies]
-test = ["pylint==3.0.0", "pytest==7.4.2"]
+test = ["pylint==3.0.1", "pytest==7.4.2"]
 
 [tool.pdm.dev-dependencies]
 dev = ["black==23.9.1", "pylint==3.0.1", "pytest==7.4.2", "tox==4.11.3"]
