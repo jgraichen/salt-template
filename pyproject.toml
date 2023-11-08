@@ -10,7 +10,7 @@ dependencies = ["salt>=2017"]
 test = ["pylint==3.0.2", "pytest==7.4.3"]
 
 [tool.pdm.dev-dependencies]
-dev = ["black==23.10.1", "pylint==3.0.2", "pytest==7.4.3", "tox==4.11.3"]
+dev = ["black==23.11.0", "pylint==3.0.2", "pytest==7.4.3", "tox==4.11.3"]
 
 [tool.pylint.basic]
 good-names = "a,b,fd,k,v"
