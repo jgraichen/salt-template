@@ -15,20 +15,12 @@ jobs:
       matrix:
         include:
           - python: "3.10"
+            env: py310-salt3007
+          - python: "3.10"
             env: py310-salt3006
-          - python: "3.9"
-            env: py39-salt3005
-          - python: "3.9"
-            env: py39-salt3004
-          - python: "3.9"
-            env: py39-salt3003
-          - python: "3.9"
-            env: py39-salt3002
-          - python: "3.8"
-            env: py38-salt3001
 
     steps:
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      - uses: actions/checkout@v4
       - uses: pdm-project/setup-pdm@v4
         with:
           python-version: ${{ matrix.python }}
@@ -38,9 +30,9 @@ jobs:
   black:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      - uses: actions/checkout@v4
       - uses: pdm-project/setup-pdm@v4
         with:
-          python-version: "3.11"
+          python-version: "3.12"
       - run: pdm install --dev --no-self --no-default
       - run: pdm run black --check .
