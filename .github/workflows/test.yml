@@ -8,16 +8,13 @@ on:
 
 jobs:
   pytest:
-    name: ${{ matrix.env }}
     runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
         include:
-          - python: "3.10"
-            env: py310-salt3007
-          - python: "3.10"
-            env: py310-salt3006
+          - { salt: "3007", python: "3.10" }
+          - { salt: "3006", python: "3.10" }
 
     steps:
       - uses: actions/checkout@v4
@@ -25,9 +22,9 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - run: pdm install --dev --no-self --no-default
-      - run: pdm run tox -e ${{ matrix.env }} -- -vv
+      - run: pdm run tox -e py3-salt${{ matrix.salt }} -- -vv
 
-  black:
+  ruff-check:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
@@ -35,4 +32,14 @@ jobs:
         with:
           python-version: "3.12"
       - run: pdm install --dev --no-self --no-default
-      - run: pdm run black --check .
+      - run: pdm run ruff check --no-fix --diff
+
+  ruff-format:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pdm-project/setup-pdm@v4
+        with:
+          python-version: "3.12"
+      - run: pdm install --dev --no-self --no-default
+      - run: pdm run ruff format --diff --check
