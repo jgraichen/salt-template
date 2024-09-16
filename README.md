@@ -445,7 +445,7 @@ def run():
     # generate complex config file
     config = "Very complex config!"
 
-    return __salt__["template.managed"](config, sign="//")
+    return __salt__["template.managed"](config, comment_prefix="//")
 ```
 
 ```
