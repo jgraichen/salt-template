@@ -10,8 +10,11 @@ MD013: false
 # MD033/no-inline-html: allow often need tags
 MD033:
   allowed_elements:
-    - figure
+    - dd
+    - dl
+    - dt
     - figcaption
+    - figure
 
 # MD046/code-block-style: code block style conflicting with
 # admonitions...

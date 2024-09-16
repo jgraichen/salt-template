@@ -54,8 +54,7 @@ gitfs_remotes:
       - base: v1.2.0
 ```
 
-It is recommended to checkout a specific revision to avoid getting unexpected updates or changes.
-
+It is recommended to check out a specific revision to avoid getting unexpected updates or changes.
 
 ## Templates
 
@@ -66,7 +65,7 @@ All templates accept a `source` and a `default` option. Some templates have more
 <dl>
 <dt>
 
-`source` (str, list, optional)
+`source` (string, list, optional)
 
 <dd>
 
@@ -106,7 +105,6 @@ Using `default` without `source` only renders the given default data.
 
 </dl>
 
-
 ### Environment
 
 Renders a single-level dictionary into an environment file.
@@ -124,7 +122,7 @@ Renders a single-level dictionary into an environment file.
             on multiple lines
 ```
 
-```
+```env
 # This file is managed by salt. Changes will be overwritten.
 
 KEY=1
@@ -132,10 +130,9 @@ LONG_VALUE='Long string
 on multiple lines'
 ```
 
-
 ### Sysctl
 
-Renders a sysctl-like configuration with additional list suppport.
+Renders a sysctl-like configuration with additional list support.
 
 ```yaml
 /etc/rabbitmq/rabbitmq.conf:
@@ -144,10 +141,10 @@ Renders a sysctl-like configuration with additional list suppport.
     - source: salt://_templates/sysctl.py
     - context:
         default:
-            cluster_formation.peer_discovery_backend: classic_config
-            cluster_formation.classic_config.nodes:
-              - rabbit@hostname1.example.org
-              - rabbit@hostname2.example.org
+          cluster_formation.peer_discovery_backend: classic_config
+          cluster_formation.classic_config.nodes:
+            - rabbit@hostname1.example.org
+            - rabbit@hostname2.example.org
 ```
 
 ```
@@ -158,12 +155,11 @@ cluster_formation.classic_config.nodes.1 = rabbit@hostname1.example.org
 cluster_formation.classic_config.nodes.2 = rabbit@hostname2.example.org
 ```
 
-*Note:* List index starts with `1`.
-
+_Note:_ List index starts with `1`.
 
 ### Systemd
 
-Renders a file using an [`systemd.syntax`](https://www.freedesktop.org/software/systemd/man/systemd.syntax.html) approximation.
+Renders a file using a [`systemd.syntax`](https://www.freedesktop.org/software/systemd/man/systemd.syntax.html) approximation.
 
 ```yaml
 /etc/systemd/system/application.service.d/override.conf:
@@ -179,7 +175,7 @@ Renders a file using an [`systemd.syntax`](https://www.freedesktop.org/software/
             ExecStart: [Null, /usr/local/bin/application]
 ```
 
-```
+```systemd
 # This file is managed by salt. Changes will be overwritten.
 
 [Unit]
@@ -196,7 +192,7 @@ ExecStart=/usr/local/bin/application
 <dl>
 <dt>
 
-`section` (str, optional)
+`section` (string, optional)
 
 <dd>
 
@@ -214,7 +210,7 @@ Render the given data as a flat dictionary into the given section.
         section: Resolve
 ```
 
-```
+```systemd
 # This file is managed by salt. Changes will be overwritten.
 
 [Resolve]
@@ -223,7 +219,6 @@ Domains=~consul
 ```
 
 </dl>
-
 
 ### Text
 
@@ -242,7 +237,7 @@ Renders a list of text blobs into a combined file.
           - pillar:key:two
 ```
 
-```
+```text
 # This file is managed by salt. Changes will be overwritten.
 
 First blob.
@@ -258,8 +253,7 @@ Blob from first pillar key.
 Blob from second pillar key.
 ```
 
-*Note:* The text template recognizes `comment_prefix` from [`template.managed`](#templatemanaged) and uses this to prefix source comments.
-
+_Note:_ The text template recognizes `comment_prefix` from [`template.managed`](#templatemanaged) and uses this to prefix source comments.
 
 ### Yaml2
 
@@ -292,11 +286,11 @@ database:
 <dl>
 <dt>
 
-`root` (str, optional)
+`root` (string, optional)
 
 <dd>
 
-A colon-separated string to recursively nest the data into the given path. Useful if applications expected the configuration in a specific path but you do not want have that in the source pillar.
+A colon-separated string to recursively nest the data into the given path. Useful if applications expected the configuration in a specific path, but you do not want to have that in the source pillar.
 
 ```yaml
 /rails/config/database.yaml:
@@ -318,7 +312,6 @@ production:
 
 </dl>
 
-
 ### config (ini/properties)
 
 Renders into an ini/properties file using Pythons `configparser` module.
@@ -331,7 +324,7 @@ Renders into an ini/properties file using Pythons `configparser` module.
     - context:
         default:
           DEFAULT:
-            enabled: 'yes'
+            enabled: "yes"
           DATABASE:
             host: 127.0.0.1
             port: 1234
@@ -354,7 +347,7 @@ port = 1234
 <dl>
 <dt>
 
-`section` (str, optional)
+`section` (string, optional)
 
 <dd>
 
@@ -381,7 +374,6 @@ hostname = 127.0.0.1
 
 </dl>
 
-
 ## Execution modules
 
 ### `template.managed`
@@ -393,8 +385,8 @@ The preamble text is loaded via [`config.get`](https://docs.saltproject.io/en/la
 ```yaml
 # /etc/salt/master
 template_managed: >
-    This file is part of the salt.example.org
-    collective. Resistance is futile.
+  This file is part of the salt.example.org
+  collective. Resistance is futile.
 ```
 
 All provided templates here use `template.managed` to render the final output. Options from the template are passed through to the module function.
@@ -412,7 +404,7 @@ A text string or a list of lines.
 
 <dt>
 
-`preamble` (bool, default: `True`)
+`preamble` (boolean, default: `True`)
 
 <dd>
 
@@ -448,7 +440,7 @@ def run():
     return __salt__["template.managed"](config, comment_prefix="//")
 ```
 
-```
+```text
 // This file is managed by salt. Changes will be overwritten.
 
 Very complex config!
