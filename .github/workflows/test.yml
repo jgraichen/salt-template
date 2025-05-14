@@ -3,8 +3,13 @@
 name: build
 
 on:
-  - push
-  - pull_request
+  push:
+  pull_request:
+  workflow_dispatch:
+
+env:
+  PY_COLORS: "1"
+  FORCE_COLOR: true
 
 jobs:
   pytest:
