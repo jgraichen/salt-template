@@ -9,7 +9,7 @@ import tempfile
 import pytest
 import salt.config
 import salt.loader
-import salt.pillar
+import salt.template
 import yaml
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
