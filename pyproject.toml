@@ -8,7 +8,7 @@ readme = "README.md"
 dependencies = ["salt<3007.2"]
 
 [project.optional-dependencies]
-test = ["pylint~=3.3.6", "pytest~=8.3.5"]
+test = ["pylint~=3.3.6", "pytest~=8.4.0"]
 
 [tool.pylint.basic]
 good-names = "a,b,fd,k,v"
@@ -38,7 +38,7 @@ extend-select = ["I"]
 [tool.uv]
 dev-dependencies = [
     "pylint~=3.3.6",
-    "pytest~=8.3.5",
+    "pytest~=8.4.0",
     "ruff~=0.11.7",
     "tox~=4.26.0",
     "tox-uv>=1.25.0",
