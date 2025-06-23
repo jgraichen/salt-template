@@ -39,7 +39,7 @@ extend-select = ["I"]
 dev-dependencies = [
     "pylint~=3.3.6",
     "pytest~=8.4.0",
-    "ruff~=0.11.7",
+    "ruff~=0.12.0",
     "tox~=4.26.0",
     "tox-uv>=1.25.0",
     "uv<0.6.0",
