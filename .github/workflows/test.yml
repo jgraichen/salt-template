@@ -26,7 +26,7 @@ jobs:
       - uses: astral-sh/setup-uv@v6
         with:
           enable-cache: True
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python }}
       - run: uv sync --dev
@@ -39,7 +39,7 @@ jobs:
       - uses: astral-sh/setup-uv@v6
         with:
           enable-cache: True
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.13"
       - run: uv sync --dev
@@ -52,7 +52,7 @@ jobs:
       - uses: astral-sh/setup-uv@v6
         with:
           enable-cache: True
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.13"
       - run: uv sync --dev
