@@ -41,7 +41,7 @@ jobs:
           enable-cache: True
       - uses: actions/setup-python@v6
         with:
-          python-version: "3.13"
+          python-version: "3.14"
       - run: uv sync --dev
       - run: uv run ruff check --no-fix --diff
 
@@ -54,6 +54,6 @@ jobs:
           enable-cache: True
       - uses: actions/setup-python@v6
         with:
-          python-version: "3.13"
+          python-version: "3.14"
       - run: uv sync --dev
       - run: uv run ruff format --diff --check
