@@ -8,7 +8,7 @@ readme = "README.md"
 dependencies = ["salt<3007.9"]
 
 [project.optional-dependencies]
-test = ["pylint~=3.3.6", "pytest~=8.4.0"]
+test = ["pylint~=4.0.2", "pytest~=8.4.0"]
 
 [tool.pylint.basic]
 good-names = "a,b,fd,k,v"
