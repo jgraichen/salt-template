@@ -5,7 +5,7 @@ authors = [{ name = "Jan Graichen", email = "jgraichen@altimos.de" }]
 license = { text = "MIT" }
 requires-python = ">=3.10"
 readme = "README.md"
-dependencies = ["salt<3007.9"]
+dependencies = ["salt<3007.10"]
 
 [project.optional-dependencies]
 test = ["pylint~=3.3.6", "pytest~=8.4.0"]
