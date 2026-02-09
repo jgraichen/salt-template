@@ -14,7 +14,7 @@ test = [
 ]
 dev = [
   { include-group = "test" }, #
-  "ruff~=0.14.8",
+  "ruff~=0.15.0",
   "tox~=4.34.1",
 ]
 
