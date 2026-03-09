@@ -15,7 +15,7 @@ test = [
 dev = [
   { include-group = "test" }, #
   "ruff~=0.15.0",
-  "tox~=4.47.0",
+  "tox~=4.49.0",
 ]
 
 [tool.pylint.basic]
