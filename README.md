@@ -51,7 +51,7 @@ The recommended installation uses salt `GitFS` to include this repository into y
 ```yaml
 gitfs_remotes:
   - https://github.com/jgraichen/salt-template.git:
-      - base: v1.2.0
+      - base: v1.5.0
 ```
 
 It is recommended to check out a specific revision to avoid getting unexpected updates or changes.
@@ -147,7 +147,7 @@ Renders a sysctl-like configuration with additional list support.
             - rabbit@hostname2.example.org
 ```
 
-```
+```plain
 # This file is managed by salt. Changes will be overwritten.
 
 cluster_formation.peer_discovery_backend = classic_config
@@ -380,7 +380,7 @@ hostname = 127.0.0.1
 
 This execution module takes a string or a list of lines and renders this into a consistent text. It will add preamble and ensure there is a final newline.
 
-The preamble text is loaded via [`config.get`](https://docs.saltproject.io/en/latest/ref/modules/all/salt.modules.config.html#salt.modules.config.get) using the `template_managed` key. Therefore the preamble can be specified everywhere including the salt master configuration. This allows to easily set custom message specific to a salt master, e.g.:
+The preamble text is loaded via [`config.get`](https://docs.saltproject.io/en/latest/ref/modules/all/salt.modules.config.html#salt.modules.config.get) using the `template_managed` key. Therefore, the preamble can be specified everywhere including the salt master configuration. This allows to easily set custom message specific to a salt master, e.g.:
 
 ```yaml
 # /etc/salt/master

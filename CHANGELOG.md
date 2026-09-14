@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-09-14
+
 ### Added
 
 - Support for Salt 3008
@@ -46,7 +48,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 
 - Initial release
 
-[unreleased]: https://github.com/jgraichen/salt-template/compare/v1.4.0...HEAD
+[Unreleased]: https://github.com/jgraichen/salt-template/compare/v1.5.0...HEAD
+[1.5.0]: https://github.com/jgraichen/salt-template/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/jgraichen/salt-template/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/jgraichen/salt-template/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/jgraichen/salt-template/compare/v1.1.0...v1.2.0
