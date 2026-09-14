@@ -4,12 +4,32 @@
 Python template to serialize a text file
 """
 
-from typing import TYPE_CHECKING, Callable, Dict
+import inspect
+from collections.abc import Callable
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    __salt__: Dict[str, Callable]
+    __salt__: dict[str, Callable]
 
 VALID_TYPES = (str, type(None))
+
+
+def _pillar_get(key):
+    """
+    Read a pillar key with salt's pillar masking disabled.
+
+    Salt 3008 redacts the values returned by `pillar.get` unless the
+    caller opts out. The jinja and mako renderers clear the masking
+    context so that templates receive the real values, the `py` renderer
+    does not.
+    """
+
+    pillar_get = __salt__["pillar.get"]
+
+    if "unmask" in inspect.signature(pillar_get).parameters:
+        return pillar_get(key, unmask=True)
+
+    return pillar_get(key)
 
 
 def run():
@@ -38,20 +58,22 @@ def run():
         sources = [s.strip() for s in sources.split(",")]
 
     for key in sources:
-        data = __salt__["pillar.get"](key)
+        data = _pillar_get(key)
 
         if data is None:
             continue
 
-        if isinstance(data, list):
-            if all(isinstance(item, VALID_TYPES) for item in data):
-                data = "\n".join(filter(lambda value: isinstance(value, str), data))
+        if isinstance(data, list) and all(
+            isinstance(item, VALID_TYPES) for item in data
+        ):
+            data = "\n".join(filter(lambda value: isinstance(value, str), data))
 
-        if isinstance(data, dict):
-            if all(isinstance(value, VALID_TYPES) for value in data.values()):
-                data = "\n".join(
-                    filter(lambda value: isinstance(value, str), data.values())
-                )
+        if isinstance(data, dict) and all(
+            isinstance(value, VALID_TYPES) for value in data.values()
+        ):
+            data = "\n".join(
+                filter(lambda value: isinstance(value, str), data.values())
+            )
 
         if not isinstance(data, str):
             raise ValueError(

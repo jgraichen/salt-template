@@ -4,6 +4,8 @@ Utility functions for working with templates and template-based file
 serialization.
 """
 
+import inspect
+
 
 def _fastmerge(a, b):
     """
@@ -43,6 +45,25 @@ def _filter(data, exclude=None):
     if isinstance(data, list):
         return [_filter(v) for v in data]
     return data
+
+
+def _pillar_get(key, *args, **kwargs):
+    """
+    Read a pillar key like `pillar.get`, but with salt's pillar masking
+    disabled.
+
+    Salt 3008 redacts the values returned by `pillar.get` unless the
+    caller opts out. The jinja and mako renderers clear the masking
+    context so that templates receive the real values, the `py` renderer
+    does not. All arguments are passed through to `pillar.get`.
+    """
+
+    pillar_get = __salt__["pillar.get"]
+
+    if "unmask" in inspect.signature(pillar_get).parameters:
+        kwargs["unmask"] = True
+
+    return pillar_get(key, *args, **kwargs)
 
 
 def _render_commented(text, sign):
@@ -103,8 +124,8 @@ def prepare(**kwargs):
         if isinstance(sources, str):
             sources = [s.strip() for s in sources.split(",")]
 
-        for pillar in sources:
-            data = _fastmerge(data, __salt__["pillar.get"](pillar, default={}))
+        for key in sources:
+            data = _fastmerge(data, _pillar_get(key, default={}))
 
     if exclude:
         if isinstance(exclude, str):

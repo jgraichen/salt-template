@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 
 ## [Unreleased]
 
+### Added
+
+- Support for Salt 3008
+
+### Fixed
+
+- Pillar values are no longer redacted as `**********` when rendering
+  templates on salt 3008
+
 ## [Unreleased]
 
 ### Added
