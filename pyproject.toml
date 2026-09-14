@@ -12,10 +12,13 @@ test = [
   "pylint~=4.0.4", #
   "pytest~=9.1.1",
 ]
+lint = [
+  "ruff==0.16.7", #
+]
 dev = [
   { include-group = "test" }, #
-  "ruff~=0.16.6",
-  "tox~=4.61.4",
+  { include-group = "lint" },
+  "nox~=2025.5.1",
 ]
 
 [tool.pylint.basic]
@@ -42,3 +45,13 @@ docstring-code-format = true
 
 [tool.ruff.lint]
 extend-select = ["I"]
+ignore = [
+  # Invalid pillar data is a data error surfaced to the user, not a
+  # programming error, therefore these templates raise `ValueError`.
+  "TRY004",
+]
+
+[tool.ruff.lint.per-file-ignores]
+# The `#!py` line selects salt's python renderer, these templates are
+# not executable scripts.
+"_templates/*.py" = ["EXE001"]
