@@ -46,7 +46,7 @@ jobs:
         with:
           python-version: "3.14"
       - run: uv sync --only-group=lint
-      - run: uv run ruff check --no-fix --diff
+      - run: uv run ruff check
 
   ruff-format:
     runs-on: ubuntu-24.04
