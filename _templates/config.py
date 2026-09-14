@@ -6,10 +6,11 @@ Python template to serialize an ini/properties file
 
 import configparser
 import io
-from typing import TYPE_CHECKING, Callable, Dict
+from collections.abc import Callable
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    __salt__: Dict[str, Callable]
+    __salt__: dict[str, Callable]
 
 
 def run():

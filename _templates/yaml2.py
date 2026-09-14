@@ -4,13 +4,14 @@
 Python template for YAML serialization
 """
 
-from typing import TYPE_CHECKING, Callable, Dict
+from collections.abc import Callable
+from typing import TYPE_CHECKING
 
 import yaml as _pyyaml
 from salt.serializers import yaml
 
 if TYPE_CHECKING:
-    __salt__: Dict[str, Callable]
+    __salt__: dict[str, Callable]
 
 try:
     from salt.utils.versions import version_cmp

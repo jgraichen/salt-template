@@ -5,10 +5,11 @@ Python template to serialize an ENV file
 """
 
 import shlex
-from typing import TYPE_CHECKING, Callable, Dict
+from collections.abc import Callable
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    __salt__: Dict[str, Callable]
+    __salt__: dict[str, Callable]
 
 
 def run():
