@@ -18,7 +18,7 @@ lint = [
 dev = [
   { include-group = "test" }, #
   { include-group = "lint" },
-  "nox~=2025.5.1",
+  "nox~=2025.11.12",
 ]
 
 [tool.pylint.basic]
